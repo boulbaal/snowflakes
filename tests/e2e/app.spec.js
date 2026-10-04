@@ -286,6 +286,34 @@ test('beveiliging: schrijven zonder eigen header wordt geweigerd, test-login bes
   expect((await g.post('/api/login', { data: { credential: 'a.b.c' } })).status()).toBe(401);
 });
 
+test('archieffoto\'s: alleen met de geheime sleutel, met naamsvermelding en bronlink, niet dubbel', async ({ page, baseURL }) => {
+  const SLEUTEL = 'lokaal-test-zaai-sleutel-0123456789abcdef';   // staat in .dev.vars
+  const ctx = await pwRequest.newContext({ baseURL });
+  const form = (bron) => ({ full: { name: 'f.jpg', mimeType: 'image/jpeg', buffer: fs.readFileSync(FIX('vlok.jpg')) },
+    thumb: { name: 't.jpg', mimeType: 'image/jpeg', buffer: fs.readFileSync(FIX('vlok-klein.jpg')) },
+    credit: 'Wilson Bentley · public domain', source: bron });
+  const bron = 'https://commons.wikimedia.org/wiki/File:Test_snowflake.jpg';
+  expect((await ctx.post('/api/seed', { multipart: form(bron) })).status()).toBe(404);
+  expect((await ctx.post('/api/seed', { multipart: form(bron), headers: { Authorization: 'Bearer fout' } })).status()).toBe(404);
+  const ok = await ctx.post('/api/seed', { multipart: form(bron), headers: { Authorization: 'Bearer ' + SLEUTEL } });
+  expect(ok.status()).toBe(201);
+  const id = (await ok.json()).id;
+  const nog = await ctx.post('/api/seed', { multipart: form(bron), headers: { Authorization: 'Bearer ' + SLEUTEL } });
+  expect(await nog.json()).toEqual({ id, existing: true });
+  // een gewone upload kan zelf geen naamsvermelding of bron zetten
+  const bob = await gebruiker(baseURL, 'bob', 'Bob');
+  const r = await bob.post('/api/photos', { multipart: { ...MULTI(), credit: 'Iemand anders · public domain', source: 'https://example.com/x' } });
+  const eigen = (await r.json()).id;
+  const mijn = await (await bob.get('/api/mine')).json();
+  expect(mijn.photos.find((f) => f.id === eigen).credit).toBeUndefined();
+  // in de app: de naamsvermelding op de kaart en een link naar de bron in het grote beeld
+  await page.goto('/');
+  await expect(page.locator('.kaart:not(.onder) .door')).toHaveText('Wilson Bentley · public domain');
+  const k = await page.locator('.kaart:not(.onder)').boundingBox();
+  await page.mouse.click(k.x + k.width / 2, k.y + k.height / 2);
+  await expect(page.locator('#grootDoor a')).toHaveAttribute('href', bron);
+});
+
 test('Arabisch: van rechts naar links, alle teksten vertaald', async ({ page }) => {
   await page.goto('/');
   await page.locator('#taal').selectOption('ar');

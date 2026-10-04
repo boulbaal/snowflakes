@@ -30,11 +30,14 @@ CREATE TABLE IF NOT EXISTS photos (
   width        INTEGER NOT NULL,
   height       INTEGER NOT NULL,
   bytes        INTEGER NOT NULL,                -- grootte van de grote versie
+  credit       TEXT,                            -- archieffoto's: wie ze maakte + licentie (in plaats van "© bijnaam")
+  source       TEXT,                            -- archieffoto's: link naar de bron
   created_at   INTEGER NOT NULL,
   reviewed_at  INTEGER
 );
 CREATE INDEX IF NOT EXISTS photos_status ON photos(status, created_at);
 CREATE INDEX IF NOT EXISTS photos_user ON photos(user_id, created_at);
+CREATE UNIQUE INDEX IF NOT EXISTS photos_source ON photos(source);
 
 -- De beelden zelf (zolang ze in D1 staan; later kan dit naar R2).
 CREATE TABLE IF NOT EXISTS photo_blobs (

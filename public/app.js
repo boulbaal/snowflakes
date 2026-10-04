@@ -326,18 +326,22 @@
     if (!rij.length) { stapel.textContent = ''; vulRij(); } else tekenStapel();
   }
 
+  // wie de foto maakte: de bijnaam, of bij archieffoto's de maker en licentie
+  const wieTekst = (f) => f.credit ? f.credit : (f.by ? '© ' + f.by : '');
+  const naamVan = (f) => f.credit ? f.credit.split(' · ')[0] : f.by;
+
   function maakKaart(f, bovenop) {
     const k = document.createElement('div');
     k.className = 'kaart' + (bovenop ? '' : ' onder');
     k.dataset.id = f.id;
     const img = document.createElement('img');
     img.src = '/img/' + f.id + '/f';
-    img.alt = t('card.alt', { name: f.by });
+    img.alt = t('card.alt', { name: naamVan(f) });
     img.decoding = 'async';
     img.draggable = false;
     const door = document.createElement('div');
     door.className = 'door';
-    door.textContent = '© ' + f.by;
+    door.textContent = wieTekst(f);
     const mooi = document.createElement('span'); mooi.className = 'stempel mooi'; mooi.textContent = t('stamp.like');
     const verder = document.createElement('span'); verder.className = 'stempel verder'; verder.textContent = t('stamp.skip');
     const waas = document.createElement('img');
@@ -494,8 +498,17 @@
     grootTerug = document.activeElement;
     const img = $('grootImg');
     img.src = '/img/' + f.id + '/f';
-    img.alt = t('card.alt', { name: f.by });
-    $('grootDoor').textContent = f.by ? '© ' + f.by : '';
+    img.alt = t('card.alt', { name: naamVan(f) });
+    const door = $('grootDoor');
+    door.textContent = '';
+    if (f.credit && f.source) {
+      const a = document.createElement('a');
+      a.href = f.source; a.target = '_blank'; a.rel = 'noopener';
+      a.textContent = f.credit;
+      door.appendChild(a);
+    } else {
+      door.textContent = wieTekst(f);
+    }
     const acties = $('grootActies');
     acties.textContent = '';
     if (waar === 'favorites') {
@@ -546,7 +559,7 @@
     b.type = 'button'; b.className = 'tegel';
     const img = document.createElement('img');
     img.src = '/img/' + f.id + '/t';
-    img.alt = t('card.alt', { name: f.by });
+    img.alt = t('card.alt', { name: naamVan(f) });
     img.loading = 'lazy'; img.decoding = 'async';
     b.appendChild(img);
     if (opties.nr) { const nr = document.createElement('span'); nr.className = 'nr'; nr.textContent = String(opties.nr); b.appendChild(nr); }
@@ -557,7 +570,7 @@
     }
     const label = document.createElement('span');
     label.className = 'label';
-    const naam = document.createElement('span'); naam.textContent = opties.zonderNaam ? '' : f.by;
+    const naam = document.createElement('span'); naam.textContent = opties.zonderNaam ? '' : (f.credit ? naamVan(f) : f.by);
     label.appendChild(naam);
     if (typeof f.likes === 'number' && (!opties.status || opties.status === 'approved')) {
       const h = document.createElement('span');
@@ -772,9 +785,9 @@
         const li = document.createElement('li');
         li.dataset.id = f.id;
         const img = document.createElement('img');
-        img.src = '/img/' + f.id + '/f'; img.alt = t('card.alt', { name: f.by }); img.loading = 'lazy';
+        img.src = '/img/' + f.id + '/f'; img.alt = t('card.alt', { name: naamVan(f) }); img.loading = 'lazy';
         const info = document.createElement('p'); info.className = 'info';
-        info.textContent = '© ' + f.by + ' · ' + datum(f.at) + ' · ' + f.w + '×' + f.h + ' ';
+        info.textContent = wieTekst(f) + ' · ' + datum(f.at) + ' · ' + f.w + '×' + f.h + ' ';
         if (f.status === 'hidden') {
           const s = document.createElement('strong'); s.textContent = t('admin.reported', { n: f.reports });
           info.appendChild(s);

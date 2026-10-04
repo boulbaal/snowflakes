@@ -160,9 +160,11 @@ async function logIn(env, sub, email) {
 
 /* ---------------- foto's ---------------- */
 
-const fotoVelden = `p.id, p.width, p.height, p.created_at, u.nickname AS by`;
+const fotoVelden = `p.id, p.width, p.height, p.created_at, p.credit, p.source, u.nickname AS by`;
 function fotoUit(r, extra = {}) {
-  return { id: r.id, w: r.width, h: r.height, by: r.by || '', at: r.created_at, ...extra };
+  const uit = { id: r.id, w: r.width, h: r.height, by: r.by || '', at: r.created_at, ...extra };
+  if (r.credit) { uit.credit = r.credit; uit.source = r.source || ''; }
+  return uit;
 }
 
 async function leesBlob(env, id, variant) {
@@ -316,6 +318,50 @@ async function meld(env, me, id) {
   return json({ ok: true });
 }
 
+/* ---------------- archieffoto's (eenmalig inladen) ---------------- */
+
+async function zaai(env, request) {
+  const geheim = env.SEED_TOKEN;
+  if (!geheim || String(geheim).length < 32) return fout('not_found', 404);
+  const kop = request.headers.get('Authorization') || '';
+  const gegeven = kop.startsWith('Bearer ') ? kop.slice(7) : '';
+  if ((await sha256(gegeven)) !== (await sha256(String(geheim)))) return fout('not_found', 404);
+  let form;
+  try { form = await request.formData(); } catch { return fout('upload_invalid'); }
+  const credit = String(form.get('credit') || '').trim();
+  const bron = String(form.get('source') || '').trim();
+  if (!credit || credit.length > 80) return fout('seed_credit');
+  if (!/^https:\/\/[^\s]{8,300}$/.test(bron)) return fout('seed_source');
+  const al = await env.DB.prepare('SELECT id FROM photos WHERE source = ?').bind(bron).first();
+  if (al) return json({ id: al.id, existing: true });
+  const vol = form.get('full');
+  const klein = form.get('thumb');
+  if (!vol || !klein || typeof vol === 'string' || typeof klein === 'string') return fout('upload_invalid');
+  if (vol.size > GRENZEN.volMaxBytes || klein.size > GRENZEN.kleinMaxBytes) return fout('upload_big', 413);
+  const vb = new Uint8Array(await vol.arrayBuffer());
+  const kb = new Uint8Array(await klein.arrayBuffer());
+  const vm = jpegMaat(vb);
+  const km = jpegMaat(kb);
+  if (!vm || !km) return fout('upload_type');
+  if (heeftExif(vb) || heeftExif(kb)) return fout('upload_exif');
+  if (Math.max(vm.w, vm.h) > GRENZEN.volMaxPx || Math.max(km.w, km.h) > GRENZEN.kleinMaxPx) return fout('upload_dims');
+  // de archieffoto's horen bij één vaste systeemgebruiker zonder bijnaam
+  let u = await env.DB.prepare("SELECT id FROM users WHERE google_sub = 'seed:archive'").first();
+  if (!u) {
+    u = { id: willekeurig(16) };
+    await env.DB.prepare("INSERT INTO users (id, google_sub, is_admin, created_at) VALUES (?, 'seed:archive', 0, ?)").bind(u.id, Date.now()).run();
+  }
+  const id = willekeurig(12);
+  const nu = Date.now();
+  await env.DB.batch([
+    env.DB.prepare(`INSERT INTO photos (id, user_id, status, width, height, bytes, credit, source, created_at, reviewed_at)
+                    VALUES (?, ?, 'approved', ?, ?, ?, ?, ?, ?, ?)`).bind(id, u.id, vm.w, vm.h, vb.length, credit, bron, nu, nu),
+    env.DB.prepare('INSERT INTO photo_blobs (photo_id, variant, data) VALUES (?, ?, ?)').bind(id, 'full', vb.buffer),
+    env.DB.prepare('INSERT INTO photo_blobs (photo_id, variant, data) VALUES (?, ?, ?)').bind(id, 'thumb', kb.buffer),
+  ]);
+  return json({ id }, 201);
+}
+
 /* ---------------- beheer (alleen Ali) ---------------- */
 
 async function wachtrij(env) {
@@ -407,6 +453,10 @@ async function api(request, env, url) {
     const n = willekeurig(24);
     return json({ nonce: n }, 200, { 'Set-Cookie': koekje('sf_n', n, 600, '/api') });
   }
+
+  // Archieffoto's inladen (eenmalig, vanaf Ali's pc): alleen met de geheime SEED_TOKEN.
+  // Zonder die instelling bestaat deze route niet.
+  if (pad === '/api/seed' && m === 'POST') return zaai(env, request);
 
   // vanaf hier: alleen van onze eigen pagina (behalve GET's die niets veranderen)
   const schrijft = m !== 'GET' && m !== 'HEAD';
