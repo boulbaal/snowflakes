@@ -383,8 +383,7 @@
     const teken = () => {
       const rot = dx / 18;
       kaart.style.transform = `translate(${dx}px, ${dy * 0.25}px) rotate(${rot}deg)`;
-      const r = document.documentElement.dir === 'rtl' ? -1 : 1;
-      const d = dx * r;
+      const d = dx;   // in elke taal: rechts = mooi (zoals overal bij swipen)
       mooi.style.opacity = String(Math.max(0, Math.min(1, d / 90)));
       verder.style.opacity = String(Math.max(0, Math.min(1, -d / 90)));
     };
@@ -405,9 +404,8 @@
       id = null;
       kaart.classList.remove('sleept');
       const snel = Math.abs(dx) / Math.max(1, performance.now() - t0) > 0.6;
-      const r = document.documentElement.dir === 'rtl' ? -1 : 1;
       if (Math.abs(dx) > 110 || (snel && Math.abs(dx) > 40)) {
-        beslis((dx * r) > 0 ? 1 : -1, dx);
+        beslis(dx > 0 ? 1 : -1, dx);
       } else {
         kaart.style.transform = '';
         mooi.style.opacity = verder.style.opacity = '0';
@@ -430,8 +428,7 @@
     const kaart = stapel.querySelector('.kaart:not(.onder):not(.weg)');
     if (kaart) {
       if (beweging()) {
-        const r = document.documentElement.dir === 'rtl' ? -1 : 1;
-        const naar = (dxStart !== undefined ? Math.sign(dxStart) : richting * r) * (window.innerWidth + 200);
+        const naar = (dxStart !== undefined ? Math.sign(dxStart) : richting) * (window.innerWidth + 200);
         kaart.classList.add('weg');
         kaart.style.pointerEvents = 'none';
         kaart.style.transition = 'transform .32s ease-in';
@@ -457,9 +454,8 @@
   document.addEventListener('keydown', (e) => {
     if (huidigScherm !== 'swipe' || openVel || !grootBeeld.hidden) return;
     if (e.target && /^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName)) return;
-    const rtl = document.documentElement.dir === 'rtl';
-    if (e.key === 'ArrowRight') { e.preventDefault(); beslis(rtl ? -1 : 1); }
-    else if (e.key === 'ArrowLeft') { e.preventDefault(); beslis(rtl ? 1 : -1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); beslis(1); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); beslis(-1); }
   });
 
   /* ================= melden ================= */

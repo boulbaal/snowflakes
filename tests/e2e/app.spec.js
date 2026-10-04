@@ -292,4 +292,7 @@ test('Arabisch: van rechts naar links, alle teksten vertaald', async ({ page }) 
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
   await expect(page.locator('#navSwipe')).not.toHaveText('Swipe');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+  // swipen blijft hetzelfde: het hart staat rechts van het kruis, ook in RTL
+  const [nee, ja] = [await page.locator('#nee').boundingBox(), await page.locator('#ja').boundingBox()];
+  expect(ja.x).toBeGreaterThan(nee.x);
 });
