@@ -1,0 +1,29 @@
+name = "snowflakes"
+main = "src/worker.js"
+compatibility_date = "2026-09-01"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+# alleen de API en de beelden gaan door de worker; de app zelf is statisch
+run_worker_first = ["/api/*", "/img/*"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "snowflakes"
+database_id = "VUL-IN-NA-D1-CREATE"
+
+# Schrijfacties per IP (uploads hebben daarnaast hun eigen daglimiet in de code).
+[[ratelimits]]
+name = "RL_WRITE"
+namespace_id = "3001"
+simple = { limit = 120, period = 60 }
+
+[vars]
+# Het OAuth client-ID van Google is niet geheim. ADMIN_EMAIL is wel privé:
+# die staat als geheim bij Cloudflare (wrangler secret put ADMIN_EMAIL), nooit hier.
+GOOGLE_CLIENT_ID = ""
+
+[observability]
+enabled = true

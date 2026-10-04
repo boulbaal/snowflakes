@@ -1,0 +1,186 @@
+{
+ "en": {
+  "donate.button": "Donate",
+  "donate.intro": "Glad you use Snowflakes! 🎉 It stays free. A small treat makes my day:",
+  "donate.joke": "Really a big fan? Then go wild 😄",
+  "donate.free": "… or pick your own amount",
+  "lang.pick": "Choose language",
+  "refresh": "Update to the latest version"
+ },
+ "nl": {
+  "donate.button": "Doneer",
+  "donate.intro": "Leuk dat je Snowflakes gebruikt! 🎉 Het blijft gratis. Een kleine traktatie maakt me blij:",
+  "donate.joke": "Echt groot fan? Dan mag het gek 😄",
+  "donate.free": "… of kies zelf je bedrag",
+  "lang.pick": "Taal kiezen",
+  "refresh": "Bijwerken naar de nieuwste versie"
+ },
+ "fr": {
+  "donate.button": "Faire un don",
+  "donate.intro": "Content que tu utilises Snowflakes ! 🎉 Ça reste gratuit. Un petit geste me fait plaisir :",
+  "donate.joke": "Vraiment fan ? Alors lâche-toi 😄",
+  "donate.free": "… ou choisis ton montant",
+  "lang.pick": "Choisir la langue",
+  "refresh": "Mettre à jour vers la dernière version"
+ },
+ "de": {
+  "donate.button": "Spenden",
+  "donate.intro": "Schön, dass du Snowflakes nutzt! 🎉 Es bleibt kostenlos. Eine kleine Aufmerksamkeit freut mich:",
+  "donate.joke": "Richtig großer Fan? Dann darf es auch mehr sein 😄",
+  "donate.free": "… oder wähle deinen eigenen Betrag",
+  "lang.pick": "Sprache wählen",
+  "refresh": "Auf die neueste Version aktualisieren"
+ },
+ "es": {
+  "donate.button": "Donar",
+  "donate.intro": "¡Qué bien que uses Snowflakes! 🎉 Seguirá siendo gratis. Un pequeño detalle me alegra el día:",
+  "donate.joke": "¿Fan de verdad? Entonces no te cortes 😄",
+  "donate.free": "… o elige tu propio importe",
+  "lang.pick": "Elegir idioma",
+  "refresh": "Actualizar a la última versión"
+ },
+ "pt": {
+  "donate.button": "Doar",
+  "donate.intro": "Que bom que usas o Snowflakes! 🎉 Continua grátis. Um pequeno mimo alegra-me o dia:",
+  "donate.joke": "Grande fã? Então força 😄",
+  "donate.free": "… ou escolhe o teu valor",
+  "lang.pick": "Escolher idioma",
+  "refresh": "Atualizar para a versão mais recente"
+ },
+ "pl": {
+  "donate.button": "Wesprzyj",
+  "donate.intro": "Fajnie, że używasz Snowflakes! 🎉 Pozostaje darmowe. Drobny gest sprawia mi radość:",
+  "donate.joke": "Naprawdę wielki fan? To szalej 😄",
+  "donate.free": "… lub wybierz własną kwotę",
+  "lang.pick": "Wybierz język",
+  "refresh": "Zaktualizuj do najnowszej wersji"
+ },
+ "uk": {
+  "donate.button": "Підтримати",
+  "donate.intro": "Приємно, що ви користуєтесь Snowflakes! 🎉 Воно залишається безкоштовним. Невеликий подарунок мене потішить:",
+  "donate.joke": "Справжній фанат? Тоді можна й більше 😄",
+  "donate.free": "… або оберіть свою суму",
+  "lang.pick": "Вибрати мову",
+  "refresh": "Оновити до найновішої версії"
+ },
+ "ru": {
+  "donate.button": "Поддержать",
+  "donate.intro": "Приятно, что вы пользуетесь Snowflakes! 🎉 Он остаётся бесплатным. Небольшой подарок меня порадует:",
+  "donate.joke": "Настоящий фанат? Тогда можно и больше 😄",
+  "donate.free": "… или выберите свою сумму",
+  "lang.pick": "Выбрать язык",
+  "refresh": "Обновить до последней версии"
+ },
+ "tr": {
+  "donate.button": "Bağış yap",
+  "donate.intro": "Snowflakes kullandığın için teşekkürler! 🎉 Ücretsiz kalıyor. Küçük bir ikram beni mutlu eder:",
+  "donate.joke": "Gerçekten büyük hayran mısın? O zaman çekinme 😄",
+  "donate.free": "… veya kendi tutarını seç",
+  "lang.pick": "Dil seç",
+  "refresh": "En son sürüme güncelle"
+ },
+ "ar": {
+  "donate.button": "تبرع",
+  "donate.intro": "سعيد لأنك تستخدم Snowflakes! 🎉 سيبقى مجانياً. لفتة صغيرة تسعدني:",
+  "donate.joke": "معجب كبير فعلاً؟ إذن لا تتردد 😄",
+  "donate.free": "… أو اختر المبلغ بنفسك",
+  "lang.pick": "اختر اللغة",
+  "refresh": "التحديث إلى أحدث إصدار"
+ },
+ "ur": {
+  "donate.button": "عطیہ دیں",
+  "donate.intro": "خوشی ہوئی کہ آپ Snowflakes استعمال کرتے ہیں! 🎉 یہ مفت رہے گا۔ ایک چھوٹا سا تحفہ مجھے خوش کر دیتا ہے:",
+  "donate.joke": "واقعی بڑے فین ہیں؟ تو کھل کر دیں 😄",
+  "donate.free": "… یا اپنی رقم خود چنیں",
+  "lang.pick": "زبان منتخب کریں",
+  "refresh": "تازہ ترین ورژن پر اپ ڈیٹ کریں"
+ },
+ "hi": {
+  "donate.button": "दान करें",
+  "donate.intro": "अच्छा लगा कि आप Snowflakes इस्तेमाल करते हैं! 🎉 यह मुफ़्त रहेगा। एक छोटी सी मदद से मुझे खुशी होगी:",
+  "donate.joke": "सच में बड़े फ़ैन हैं? तो खुलकर दें 😄",
+  "donate.free": "… या अपनी राशि चुनें",
+  "lang.pick": "भाषा चुनें",
+  "refresh": "नवीनतम संस्करण पर अपडेट करें"
+ },
+ "bn": {
+  "donate.button": "দান করুন",
+  "donate.intro": "ভালো লাগছে যে আপনি Snowflakes ব্যবহার করছেন! 🎉 এটি বিনামূল্যেই থাকবে। ছোট্ট একটি উপহার আমাকে খুশি করে:",
+  "donate.joke": "সত্যিই বড় ভক্ত? তাহলে মন খুলে দিন 😄",
+  "donate.free": "… অথবা নিজের পরিমাণ বেছে নিন",
+  "lang.pick": "ভাষা বেছে নিন",
+  "refresh": "সর্বশেষ সংস্করণে আপডেট করুন"
+ },
+ "id": {
+  "donate.button": "Donasi",
+  "donate.intro": "Senang kamu memakai Snowflakes! 🎉 Tetap gratis. Traktiran kecil membuatku senang:",
+  "donate.joke": "Penggemar berat? Silakan lebih 😄",
+  "donate.free": "… atau pilih jumlahmu sendiri",
+  "lang.pick": "Pilih bahasa",
+  "refresh": "Perbarui ke versi terbaru"
+ },
+ "vi": {
+  "donate.button": "Ủng hộ",
+  "donate.intro": "Rất vui vì bạn dùng Snowflakes! 🎉 Nó vẫn miễn phí. Một chút ủng hộ làm tôi vui cả ngày:",
+  "donate.joke": "Fan cứng? Vậy thì đừng ngại 😄",
+  "donate.free": "… hoặc tự chọn số tiền",
+  "lang.pick": "Chọn ngôn ngữ",
+  "refresh": "Cập nhật lên phiên bản mới nhất"
+ },
+ "zh": {
+  "donate.button": "捐赠",
+  "donate.intro": "很高兴你使用 Snowflakes！🎉 它会一直免费。小小心意让我开心一整天：",
+  "donate.joke": "真的很喜欢？那就放开手 😄",
+  "donate.free": "…或自定金额",
+  "lang.pick": "选择语言",
+  "refresh": "更新到最新版本"
+ },
+ "ja": {
+  "donate.button": "寄付",
+  "donate.intro": "Snowflakes を使ってくれてありがとう！🎉 ずっと無料です。ちょっとした応援がうれしいです：",
+  "donate.joke": "大ファンですか？なら思い切って 😄",
+  "donate.free": "…または金額を自由に選ぶ",
+  "lang.pick": "言語を選ぶ",
+  "refresh": "最新バージョンに更新"
+ },
+ "ko": {
+  "donate.button": "후원",
+  "donate.intro": "Snowflakes를 써 주셔서 기뻐요! 🎉 계속 무료예요. 작은 응원이 큰 힘이 됩니다:",
+  "donate.joke": "진짜 팬이라면? 마음껏 😄",
+  "donate.free": "… 또는 금액 직접 정하기",
+  "lang.pick": "언어 선택",
+  "refresh": "최신 버전으로 업데이트"
+ },
+ "sw": {
+  "donate.button": "Changia",
+  "donate.intro": "Nafurahi unatumia Snowflakes! 🎉 Itabaki bure. Zawadi ndogo hunifurahisha:",
+  "donate.joke": "Shabiki mkubwa kweli? Basi usisite 😄",
+  "donate.free": "… au chagua kiasi chako",
+  "lang.pick": "Chagua lugha",
+  "refresh": "Sasisha hadi toleo jipya zaidi"
+ },
+ "zgh": {
+  "donate.button": "ⵜⵉⴽⴽⵉ",
+  "donate.intro": "ⵉⵄⵊⴱ ⵉⵢⵉ ⴰⴷ ⵜⵙⵙⵎⵔⵙⴷ Snowflakes! 🎉 ⴰⴷ ⵉⵇⵇⵉⵎ ⴱⴰⵟⵍ. ⵜⵉⴽⴽⵉ ⵜⴰⵎⵥⵥⴰⵏⵜ ⴰⵔ ⵉⵢⵉ ⵜⵙⵙⴼⵔⴰⵃ:",
+  "donate.joke": "ⵜⵉⵔⵉⴷ ⵜ ⵙ ⵜⵉⴷⵜ? ⵉⵎⵉⵍ ⵓⵔ ⵜⵙⵙⵉⵡⵉⴷⴷ 😄",
+  "donate.free": "… ⵏⵖ ⵙⵜⵉ ⴰⵜⵉⴳ ⵏⵏⴽ",
+  "lang.pick": "ⵙⵜⵉ ⵜⵓⵜⵍⴰⵢⵜ",
+  "refresh": "ⵙⵎⴰⵢⵏⵓ ⵖⵔ ⵜⵓⵏⵖⵉⵍⵜ ⵜⴰⵎⴰⵢⵏⵓⵜ"
+ },
+ "ku": {
+  "donate.button": "Bexşîn",
+  "donate.intro": "Kêfxweş im ku tu Snowflakes bi kar tînî! 🎉 Belaş dimîne. Diyariyeke biçûk min kêfxweş dike:",
+  "donate.joke": "Bi rastî heyranekî mezin î? Wê demê xwe negire 😄",
+  "donate.free": "… an mîqdara xwe hilbijêre",
+  "lang.pick": "Ziman hilbijêre",
+  "refresh": "Nû bike bo guhertoya herî dawî"
+ },
+ "sn": {
+  "donate.button": "Tsigira",
+  "donate.intro": "Ndinofara kuti unoshandisa Snowflakes! 🎉 Inoramba iri mahara. Chipo chidiki chinondifadza:",
+  "donate.joke": "Unoida zvakanyanya here? Saka usazvidzore 😄",
+  "donate.free": "… kana sarudza mari yako",
+  "lang.pick": "Sarudza mutauro",
+  "refresh": "Vandudza kuvhezheni itsva"
+ }
+}
