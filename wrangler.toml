@@ -12,7 +12,7 @@ run_worker_first = ["/api/*", "/img/*"]
 [[d1_databases]]
 binding = "DB"
 database_name = "snowflakes"
-database_id = "VUL-IN-NA-D1-CREATE"
+database_id = "5e05826a-403b-4ade-92ba-92633b3e81e4"
 
 # Schrijfacties per IP (uploads hebben daarnaast hun eigen daglimiet in de code).
 [[ratelimits]]
